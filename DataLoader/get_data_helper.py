@@ -52,7 +52,7 @@ def get_hist_price(ticker, start_date, periods):
     for date in date_range:
         print('getting data from {} ...'.format(date))
         hist_eth = []
-        time_range = pd.date_range(date, periods=481, freq='0.05H')
+        time_range = pd.date_range(date, periods=481, freq='3min')
         for i in range(len(time_range) - 1):
             j = 0
             print("getting {} data from {} to {}...".format(ticker, time_range[i], time_range[i + 1]))
