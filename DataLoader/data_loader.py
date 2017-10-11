@@ -17,9 +17,9 @@ def is_summer_time(aware_dt):
 
 
 # try to get one feed request, if succeed, append feed to data list and return True, if fail return False
-def try_get_feed(ticker, start, end, hist_data):
+def try_get_feed(ticker, start, end, hist_data, granularity=1):
     try:
-        feed = public_client.get_product_historic_rates(ticker, start, end, granularity=1)
+        feed = public_client.get_product_historic_rates(ticker, start, end, granularity)
         if len(feed) == 0:
             print('empty record, get next feed...')
             return True
