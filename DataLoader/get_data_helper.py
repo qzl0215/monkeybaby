@@ -1,8 +1,7 @@
 import gdax
 import pandas as pd
 import time
-from datetime import datetime
-from datetime import timedelta
+from datetime import datetime, timedelta
 import os
 import pytz
 
@@ -74,7 +73,7 @@ def get_hist_price(ticker, start_date, periods):
 def get_start_date_and_time(path, start_date):
     date_range = pd.date_range(start_date, periods=1000, freq='1D')
     for date in date_range:
-        if date > datetime.now()-timedelta(days=-1):
+        if date > datetime.now()+timedelta(days=-1):
             break
         for root, dirs, files in os.walk(path):
             if date.strftime("%Y-%m-%d") + '.csv' in files:
@@ -94,6 +93,7 @@ def continue_retrieval(ticker, start_date):
     start_time = get_start_date_and_time(path, start_date)
     if start_time:
         get_hist_price(ticker, start_time, 200)
+
 
 ticker = input('This is a data loader application. Type in btc or eth or ltc to get data\n')
 start_date = input('since when? you can type a date, for example, 5/1/2017\n')
